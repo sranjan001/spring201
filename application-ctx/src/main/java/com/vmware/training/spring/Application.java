@@ -12,7 +12,7 @@ public class Application {
 
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         PrintService printService = applicationContext.getBean(PrintService.class);
-        printService.printStatusMessage();
+        printService.printStatusMessage("Josh", "Long");
 
     }
 }

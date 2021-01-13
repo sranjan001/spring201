@@ -9,8 +9,8 @@ public class PrintService {
         this.userService = userService;
     }
 
-    public void printStatusMessage(){
-        String output = userService.getName() + " - " + statusService.getStatusMessage();
+    public void printStatusMessage(String firstName, String lastName){
+        String output = userService.getName(firstName, lastName) + " - " + statusService.getStatusMessage();
         System.out.println(output);
     }
 }

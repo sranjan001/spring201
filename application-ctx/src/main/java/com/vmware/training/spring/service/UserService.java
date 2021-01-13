@@ -2,16 +2,12 @@ package com.vmware.training.spring.service;
 
 public class UserService {
     private final boolean showFullName;
-    private final String firstName;
-    private final String lastName;
 
-    public UserService(String firstName, String lastName, boolean showFullName){
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public UserService(boolean showFullName){
         this.showFullName = showFullName;
     }
 
-    public String getName(){
+    public String getName(String firstName, String lastName){
         if(showFullName) {
             return firstName + ", " + lastName;
         } else {

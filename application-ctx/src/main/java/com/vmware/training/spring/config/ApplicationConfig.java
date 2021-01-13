@@ -17,11 +17,8 @@ public class ApplicationConfig {
     @Value("${app.show-fullname}")
     private boolean showFullName;
 
-    @Value("${app.status-message}")
+    @Value("#{environment['spring.profiles.active'] != 'dev'? environment['app.status-message']  : environment['app.status-message'] + ' - DEV' }")
     private String statusMessage;
-
-    @Value("${app.status-message-dev}")
-    private String statusMessageDev;
 
     @Autowired
     UserService userService;
@@ -34,16 +31,9 @@ public class ApplicationConfig {
         return new UserService(showFullName);
     }
 
-    @Profile("!dev")
     @Bean
     public StatusService statusService(){
         return new StatusService(statusMessage);
-    }
-
-    @Profile("dev")
-    @Bean
-    public StatusService statusServiceDev(){
-        return new StatusService(statusMessageDev);
     }
 
     @Bean

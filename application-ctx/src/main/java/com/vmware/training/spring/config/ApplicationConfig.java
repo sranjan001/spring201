@@ -7,11 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.security.Principal;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
+@PropertySource("classpath:application.properties")
 public class ApplicationConfig {
+
+    @Value("${app.show-fullname}")
+    private boolean showFullName;
+
+    @Value("${app.status-message}")
+    private String statusMessage;
 
     @Autowired
     UserService userService;
@@ -21,12 +27,12 @@ public class ApplicationConfig {
 
     @Bean
     public UserService userService(){
-        return new UserService("Josh", "Long", true);
+        return new UserService(showFullName);
     }
 
     @Bean
     public StatusService statusService(){
-        return new StatusService("Hi, I am in US!!");
+        return new StatusService(statusMessage);
     }
 
     @Bean

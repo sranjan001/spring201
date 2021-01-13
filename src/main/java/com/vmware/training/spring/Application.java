@@ -1,16 +1,18 @@
 package com.vmware.training.spring;
 
+import com.vmware.training.spring.config.ApplicationConfig;
 import com.vmware.training.spring.service.PrintService;
-import com.vmware.training.spring.service.StatusService;
-import com.vmware.training.spring.service.UserService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 
 public class Application {
 
     public static void main(String[] args) {
-        UserService userService = new UserService("Josh", "Long", false);
-        StatusService statusService = new StatusService("Hey I am in US !!!");
 
-        PrintService printService = new PrintService(userService, statusService);
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        PrintService printService = applicationContext.getBean(PrintService.class);
         printService.printStatusMessage();
+
     }
 }

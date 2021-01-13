@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource("classpath:application.properties")
+@PropertySource(value = {"classpath:application.properties", "classpath:application-dev.properties"})
 public class ApplicationConfig {
 
     @Value("${app.show-fullname}")
@@ -19,9 +19,6 @@ public class ApplicationConfig {
 
     @Value("${app.status-message}")
     private String statusMessage;
-
-    @Value("${app.status-message-dev}")
-    private String statusMessageDev;
 
     @Autowired
     UserService userService;
@@ -34,16 +31,9 @@ public class ApplicationConfig {
         return new UserService(showFullName);
     }
 
-    @Profile("!dev")
     @Bean
     public StatusService statusService(){
         return new StatusService(statusMessage);
-    }
-
-    @Profile("dev")
-    @Bean
-    public StatusService statusServiceDev(){
-        return new StatusService(statusMessageDev);
     }
 
     @Bean

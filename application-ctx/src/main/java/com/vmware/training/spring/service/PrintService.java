@@ -1,13 +1,15 @@
 package com.vmware.training.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PrintService {
     private final StatusService statusService;
     private final UserService userService;
-    private TimeService timeService;
+    private TimeServiceInt timeService;
 
     public PrintService(UserService userService, StatusService statusService){
         this.statusService = statusService;
@@ -15,7 +17,8 @@ public class PrintService {
     }
 
     @Autowired
-    public void setTimeService(TimeService timeService) {
+    @Qualifier("timeService24Hr")
+    public void setTimeService(TimeServiceInt timeService) {
         this.timeService = timeService;
     }
 

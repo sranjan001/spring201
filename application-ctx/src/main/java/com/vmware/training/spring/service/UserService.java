@@ -1,10 +1,16 @@
 package com.vmware.training.spring.service;
 
-public class UserService {
-    private final boolean showFullName;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
-    public UserService(boolean showFullName){
-        this.showFullName = showFullName;
+@Service
+public class UserService {
+
+    @Value("${app.show-fullname}")
+    private boolean showFullName;
+
+    public UserService() {
+
     }
 
     public String getName(String firstName, String lastName){

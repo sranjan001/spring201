@@ -11,8 +11,5 @@ public class Application {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         PrintService printService = applicationContext.getBean(PrintService.class);
         printService.printStatusMessage("Josh", "Long");
-
-        PrintService printService1 = applicationContext.getBean(PrintService.class);
-        System.out.println(printService.equals(printService1));
     }
 }

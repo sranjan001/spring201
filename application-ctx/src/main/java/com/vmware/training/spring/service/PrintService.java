@@ -1,5 +1,8 @@
 package com.vmware.training.spring.service;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class PrintService {
     private final StatusService statusService;
     private final UserService userService;

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Service
-@Qualifier("timeService24Hr")
+@Qualifier("timeService24Hr") //TODO check the best practice for Qualifier
 public class TimeService24H implements TimeServiceInt {
     private static final DateTimeFormatter FORMATTER_24 = DateTimeFormatter.ofPattern("HH:mm:ss");
 

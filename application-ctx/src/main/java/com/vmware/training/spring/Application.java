@@ -8,8 +8,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Application {
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         PrintService printService = applicationContext.getBean(PrintService.class);
         printService.printStatusMessage("Josh", "Long");
+        applicationContext.close();
     }
 }

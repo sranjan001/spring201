@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 @Service
 public class PrintService {
     private final StatusService statusService;
@@ -20,6 +23,16 @@ public class PrintService {
     @Qualifier("timeService24Hr")
     public void setTimeService(TimeServiceInt timeService) {
         this.timeService = timeService;
+    }
+
+    @PostConstruct
+    public void postConstruct(){
+        System.out.println(" Post Construct: " + this.getClass().getName() );
+    }
+
+    @PreDestroy
+    public void preDestroy(){
+        System.out.println(" Pre Destroy: " + this.getClass().getName());
     }
 
     public void printStatusMessage(String firstName, String lastName){

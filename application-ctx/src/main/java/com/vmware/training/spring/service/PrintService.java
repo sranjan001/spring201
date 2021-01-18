@@ -1,15 +1,16 @@
 package com.vmware.training.spring.service;
 
+import com.vmware.training.spring.aspect.MethodLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 
 @Service
 public class PrintService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PrintService.class);
     private final StatusService statusService;
     private final UserService userService;
     private TimeServiceInt timeService;
@@ -25,23 +26,14 @@ public class PrintService {
         this.timeService = timeService;
     }
 
-    @PostConstruct
-    public void postConstruct(){
-        System.out.println(" Post Construct: " + this.getClass().getName() );
-    }
-
-    @PreDestroy
-    public void preDestroy(){
-        System.out.println(" Pre Destroy: " + this.getClass().getName());
-    }
-
+    @MethodLogger
     public void printStatusMessage(String firstName, String lastName){
         String output = userService.getName(firstName, lastName) + " - " + statusService.getStatusMessage();
 
         if(timeService != null) {
-            System.out.println("Current Time: " + timeService.getTime());
+            LOGGER.info("Current Time: " + timeService.getTime());
         }
-        System.out.println(output);
+        LOGGER.info(output);
 
     }
 }

@@ -1,9 +1,7 @@
 package com.vmware.training.spring.aspect;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -18,9 +16,11 @@ public class MethodLoggingAspect {
     public void executeMethodLogging(){
     }
 
-    @Before("executeMethodLogging()")
-    public void logMethodDetails(JoinPoint joinPoint){
-        LOGGER.info("Before Executing Method: " + joinPoint.getSignature().toString());
+    @AfterReturning(value = "executeMethodLogging()", returning = "returnValue")
+    public void logMethodDetails(JoinPoint joinPoint, Object returnValue ){
+        LOGGER.info("After Executing Method: " + joinPoint.getSignature().toString());
+        LOGGER.info("ReturnValue : " + returnValue);
+
     }
 
 }

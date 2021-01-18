@@ -27,13 +27,15 @@ public class PrintService {
     }
 
     @MethodLogger
-    public void printStatusMessage(String firstName, String lastName){
+    public boolean printStatusMessage(String firstName, String lastName){
         String output = userService.getName(firstName, lastName) + " - " + statusService.getStatusMessage();
 
         if(timeService != null) {
             LOGGER.info("Current Time: " + timeService.getTime());
         }
+
         LOGGER.info(output);
+        return true;
 
     }
 }

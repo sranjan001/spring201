@@ -9,16 +9,16 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class BeanScopeTest {
 
-    @Test
-    public void testPrototypeScope() {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
-        PrintService printService = applicationContext.getBean(PrintService.class);
-        printService.printStatusMessage("Josh", "Long");
-
-        PrintService printService1 = applicationContext.getBean(PrintService.class);
-
-        Assertions.assertNotEquals(printService, printService1);
-    }
+//    @Test
+//    public void testPrototypeScope() {
+//        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+//        PrintService printService = applicationContext.getBean(PrintService.class);
+//        printService.printStatusMessage("Josh", "Long");
+//
+//        PrintService printService1 = applicationContext.getBean(PrintService.class);
+//
+//        Assertions.assertNotEquals(printService, printService1);
+//    }
 
     @Test
     public void testSingletonScope() {

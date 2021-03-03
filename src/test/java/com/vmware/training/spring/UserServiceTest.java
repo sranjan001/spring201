@@ -14,6 +14,7 @@ public class UserServiceTest {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         PrintService printService = applicationContext.getBean(PrintService.class);
 
+        //This is for overiding the default service impl with a dummy impl.
         TimeService timeService = new TimeService() {
             @Override
             public String getTime() {

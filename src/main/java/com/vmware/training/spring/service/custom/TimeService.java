@@ -1,5 +1,6 @@
-package com.vmware.training.spring.service;
+package com.vmware.training.spring.service.custom;
 
+import com.vmware.training.spring.service.TimeServiceInt;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
